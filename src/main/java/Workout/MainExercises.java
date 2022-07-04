@@ -2,12 +2,11 @@ package Workout;
 
 public class MainExercises {
 
+    private static Exercise[] exercises = new Exercise[10];
     private String name;
-    private Exercise[] exercises;
 
-    public MainExercises(String name, Exercise[] exercises) {
+    public MainExercises(String name) {
         this.name = name;
-        this.exercises = exercises;
     }
 
     public String getName() {

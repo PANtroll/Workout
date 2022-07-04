@@ -1,32 +1,44 @@
 package Workout;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.Arrays;
 
 public class DoneExercise {
 
-    private Date data;
+    private LocalDate data;
+    private String name;
     private Integer series;
-    private Integer repeats;
+    private Integer[] repeats;
     private String description = "";
 
-    public DoneExercise(Date data, Integer series, Integer repeats, String description) {
+    public DoneExercise(LocalDate data, String name, Integer series, Integer[] repeats, String description) {
         this.data = data;
+        this.name = name;
         this.series = series;
         this.repeats = repeats;
         this.description = description;
     }
 
-    public DoneExercise(Date data, Integer series, Integer repeats) {
+    public DoneExercise(LocalDate data, String name, Integer series, Integer[] repeats) {
         this.data = data;
+        this.name = name;
         this.series = series;
         this.repeats = repeats;
     }
 
-    public Date getData() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
@@ -38,11 +50,11 @@ public class DoneExercise {
         this.series = series;
     }
 
-    public Integer getRepeats() {
+    public Integer[] getRepeats() {
         return repeats;
     }
 
-    public void setRepeats(Integer repeats) {
+    public void setRepeats(Integer[] repeats) {
         this.repeats = repeats;
     }
 
@@ -58,8 +70,9 @@ public class DoneExercise {
     public String toString() {
         return "DoneExercise{" +
                 "data=" + data +
+                ", name='" + name + '\'' +
                 ", series=" + series +
-                ", repeats=" + repeats +
+                ", repeats=" + Arrays.toString(repeats) +
                 ", description='" + description + '\'' +
                 '}';
     }
