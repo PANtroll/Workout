@@ -66,6 +66,11 @@ public class DoneExercise {
         this.description = description;
     }
 
+    public String toLog() {
+
+        return data + "\t" + name + " Series: " + series + "\t" + Arrays.toString(repeats) + " " + description;
+    }
+
     @Override
     public String toString() {
         return "DoneExercise{" +

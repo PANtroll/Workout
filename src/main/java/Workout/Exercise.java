@@ -14,11 +14,12 @@ public class Exercise {
 
     @Override
     public String toString() {
-        return "Exercise{" +
-                "name='" + name + '\'' +
-                ", series=" + series +
-                ", repeats=" + repeats +
-                '}';
+        return "Exercise{" + "name='" + name + '\'' + ", series=" + series + ", repeats=" + repeats + '}';
+    }
+
+    public String toLog() {
+
+        return name + "\t" + " Series: " + series + "\tPowtórzeń: " + repeats;
     }
 
     public String getName() {

@@ -2,7 +2,7 @@ package Workout;
 
 public class MainExercises {
 
-    private static Exercise[] exercises = new Exercise[10];
+    private static final Exercise[] exercises = new Exercise[10];
     private String name;
 
     public MainExercises(String name) {
@@ -21,8 +21,8 @@ public class MainExercises {
         return exercises;
     }
 
-    public void setExercises(Exercise[] exercises) {
-        this.exercises = exercises;
+    public Exercise getExercise(int index) {
+        return exercises[index];
     }
 
     public void addExercise(Exercise e, Integer index) {
