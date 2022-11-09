@@ -28,6 +28,8 @@ public class BasicApplication {
         try {
             System.out.println("Nazwa ćwiczenia");
             String name = s.readLine();
+            if(name.isBlank())
+                name = exercise.getName();
             System.out.println("Liczba serii");
             int series = Integer.parseInt(s.readLine());
             Integer[] repeats = new Integer[series];
@@ -68,7 +70,7 @@ public class BasicApplication {
     public void saveTrainingToFile(DoneExercise exe) {
 
         try {
-            File file = new File("C:\\workout\\Workout\\workout.txt");
+            File file = new File(".workout.txt");
             BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
             writer.append(exe.toLog());
             writer.newLine();
