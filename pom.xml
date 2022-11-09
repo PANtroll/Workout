@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
          <groupId>PANtroll</groupId>
          <artifactId>Workout</artifactId>
-         <version>0.0.1-SNAPSHOT</version>
+         <version>1.0</version>
          <name>Workout</name>
          <description>Workout application</description>
     <dependencies>
