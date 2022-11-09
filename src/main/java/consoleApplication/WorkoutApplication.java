@@ -1,4 +1,4 @@
-package Workout;
+package consoleApplication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
