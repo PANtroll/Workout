@@ -68,7 +68,7 @@ public class DoneExercise {
 
     public String toLog() {
 
-        return data + "\t" + name + " Series: " + series + "\t" + Arrays.toString(repeats) + " " + description;
+        return data + "\t\t" + name + "\t\t Series: " + series + "\t\t" + Arrays.toString(repeats) + "\n\t\t\t" + description;
     }
 
     @Override
