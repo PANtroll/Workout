@@ -1,4 +1,4 @@
-package Workout;
+package consoleApplication;
 
 import java.time.LocalDate;
 import java.util.Arrays;

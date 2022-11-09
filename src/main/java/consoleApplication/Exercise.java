@@ -1,4 +1,4 @@
-package Workout;
+package consoleApplication;
 
 public class Exercise {
 
