@@ -8,7 +8,7 @@
          <artifactId>Workout</artifactId>
          <version>0.0.1-SNAPSHOT</version>
          <name>Workout</name>
-         <description>Workout aplication</description>
+         <description>Workout application</description>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
