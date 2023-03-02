@@ -8,7 +8,7 @@ public class WorkoutApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(WorkoutApplication.class, args);
-        BasicApplication app = new BasicApplication(1, 1, 1, 1, 1, 1);
+        BasicApplication app = new BasicApplication(3, 3, 2, 3, 5, 3);
         app.main();
     }
 

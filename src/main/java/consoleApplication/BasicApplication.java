@@ -28,7 +28,9 @@ public class BasicApplication {
         try {
             System.out.println("Nazwa ćwiczenia");
             String name = s.readLine();
-            if(name.isBlank())
+            if (name.equals("0") || name.equals("exit"))
+                return;
+            if (name.isBlank())
                 name = exercise.getName();
             System.out.println("Liczba serii");
             int series = Integer.parseInt(s.readLine());
@@ -68,17 +70,13 @@ public class BasicApplication {
     }
 
     public void saveTrainingToFile(DoneExercise exe) {
-
-        try {
-            File file = new File(".workout.txt");
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
-            writer.append(exe.toLog());
-            writer.newLine();
-            writer.close();
+        File file = new File(".workout.txt");
+        try (var writer = new BufferedWriter(new FileWriter(file, true))){
+                writer.append(exe.toLog());
+                writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 
@@ -160,7 +158,8 @@ public class BasicApplication {
     public MainExercises getMainExercise(String name) {
 
         for (Map.Entry<MainExercises, Integer> exe : exercisesLevel.entrySet()) {
-            if (exe.getKey().getName().equals(name)) return exe.getKey();
+            if (exe.getKey().getName().equals(name))
+                return exe.getKey();
         }
         return null;
     }

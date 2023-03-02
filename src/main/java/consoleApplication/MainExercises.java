@@ -2,7 +2,7 @@ package consoleApplication;
 
 public class MainExercises {
 
-    private static final Exercise[] exercises = new Exercise[10];
+    private final Exercise[] exercises = new Exercise[10];
     private String name;
 
     public MainExercises(String name) {
