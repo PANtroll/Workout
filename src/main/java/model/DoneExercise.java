@@ -3,11 +3,13 @@ package model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
+@Table(name = "done_exercise")
 public class DoneExercise extends BaseExercise {
 
     @Column

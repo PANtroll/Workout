@@ -2,10 +2,12 @@ package model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.util.Objects;
 
 @Entity
+@Table(name = "exercise")
 public class Exercise extends BaseExercise{
 
     @Column
