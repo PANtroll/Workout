@@ -8,6 +8,9 @@ public class BaseExerciseTo {
 
     private String name;
 
+    public BaseExerciseTo() {
+    }
+
     public BaseExerciseTo(Long id, String name) {
         this.id = id;
         this.name = name;

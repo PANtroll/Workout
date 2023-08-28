@@ -1,16 +1,15 @@
 package model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "done_exercise")
-public class DoneExercise extends BaseExercise {
+public class DoneExercise extends BaseExercise implements Serializable {
 
     @Column
     private Date date;
@@ -18,18 +17,15 @@ public class DoneExercise extends BaseExercise {
     @Column
     private Integer numberOfSeries;
 
-    @ManyToOne
-    private Series series;
+    @OneToMany
+    @JoinColumn(name = "done_exercise_Id")
+    private List<Series> series;
 
-    @ManyToOne
-    private BaseExercise baseExercise;
-
-    public DoneExercise(Long id, String name, Date date, Integer numberOfSeries, Series series, BaseExercise baseExercise) {
+    public DoneExercise(Long id, String name, Date date, Integer numberOfSeries, List<Series> series) {
         super(id, name);
         this.date = date;
         this.numberOfSeries = numberOfSeries;
         this.series = series;
-        this.baseExercise = baseExercise;
     }
 
     public DoneExercise() {
@@ -52,33 +48,28 @@ public class DoneExercise extends BaseExercise {
         this.numberOfSeries = numberOfSeries;
     }
 
-    public Series getSeries() {
+    public List<Series> getSeries() {
         return series;
     }
 
-    public void setSeries(Series series) {
+    public void setSeries(List<Series> series) {
         this.series = series;
-    }
-
-    public BaseExercise getBaseExercise() {
-        return baseExercise;
-    }
-
-    public void setBaseExercise(BaseExercise baseExercise) {
-        this.baseExercise = baseExercise;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        DoneExercise that = (DoneExercise) o;
-        return Objects.equals(date, that.date) && Objects.equals(numberOfSeries, that.numberOfSeries) && Objects.equals(series, that.series) && Objects.equals(baseExercise, that.baseExercise);
+        if (this == o)
+            return true;
+        if (!(o instanceof DoneExercise that))
+            return false;
+        if (!super.equals(o))
+            return false;
+        return Objects.equals(date, that.date) && Objects.equals(numberOfSeries, that.numberOfSeries) && Objects.equals(series,
+                that.series);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), date, numberOfSeries, series, baseExercise);
+        return Objects.hash(super.hashCode(), date, numberOfSeries, series);
     }
 }

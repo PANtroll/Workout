@@ -15,13 +15,10 @@ public class Series {
     @Column
     private Integer repeats;
 
-    @ManyToOne
-    private Exercise exercise;
 
-    public Series(Long id, Integer repeats, Exercise exercise) {
+    public Series(Long id, Integer repeats) {
         this.id = id;
         this.repeats = repeats;
-        this.exercise = exercise;
     }
 
     public Series() {
@@ -44,23 +41,15 @@ public class Series {
         this.repeats = repeats;
     }
 
-    public Exercise getExercise() {
-        return exercise;
-    }
-
-    public void setExercise(Exercise exercise) {
-        this.exercise = exercise;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Series series)) return false;
-        return Objects.equals(getId(), series.getId()) && Objects.equals(getRepeats(), series.getRepeats()) && Objects.equals(getExercise(), series.getExercise());
+        return Objects.equals(getId(), series.getId()) && Objects.equals(getRepeats(), series.getRepeats());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getRepeats(), getExercise());
+        return Objects.hash(getId(), getRepeats());
     }
 }

@@ -11,14 +11,14 @@ public class DoneExerciseTo extends BaseExerciseTo {
 
     private Long seriesId;
 
-    private Long baseExerciseId;
+    public DoneExerciseTo() {
+    }
 
-    public DoneExerciseTo(Long id, String name, Date date, Integer numberOfSeries, Long seriesId, Long baseExerciseId) {
+    public DoneExerciseTo(Long id, String name, Date date, Integer numberOfSeries, Long seriesId) {
         super(id, name);
         this.date = date;
         this.numberOfSeries = numberOfSeries;
         this.seriesId = seriesId;
-        this.baseExerciseId = baseExerciseId;
     }
 
     public Date getDate() {
@@ -45,23 +45,21 @@ public class DoneExerciseTo extends BaseExerciseTo {
         this.seriesId = seriesId;
     }
 
-    public Long getBaseExerciseId() {
-        return baseExerciseId;
-    }
-
-    public void setBaseExerciseId(Long baseExerciseId) {
-        this.baseExerciseId = baseExerciseId;
-    }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof DoneExerciseTo that)) return false;
-        return Objects.equals(getDate(), that.getDate()) && Objects.equals(getNumberOfSeries(), that.getNumberOfSeries()) && Objects.equals(getSeriesId(), that.getSeriesId()) && Objects.equals(getBaseExerciseId(), that.getBaseExerciseId());
+        if (this == o)
+            return true;
+        if (!(o instanceof DoneExerciseTo that))
+            return false;
+        if (!super.equals(o))
+            return false;
+        return Objects.equals(date, that.date) && Objects.equals(numberOfSeries, that.numberOfSeries) && Objects.equals(seriesId,
+                that.seriesId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getDate(), getNumberOfSeries(), getSeriesId(), getBaseExerciseId());
+        return Objects.hash(super.hashCode(), date, numberOfSeries, seriesId);
     }
 }

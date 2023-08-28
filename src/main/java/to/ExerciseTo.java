@@ -10,6 +10,9 @@ public class ExerciseTo extends BaseExercise {
 
     private Integer repeats;
 
+    public ExerciseTo() {
+    }
+
     public ExerciseTo(Long id, String name, Integer series, Integer repeats) {
         super(id, name);
         this.series = series;
