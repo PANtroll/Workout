@@ -1,14 +1,16 @@
 package controller;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import service.DoneExerciseService;
 import to.DoneExerciseTo;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
+@RequestMapping("/doneExercise")
 public class DoneExerciseController {
 
 	@Autowired
@@ -21,12 +23,25 @@ public class DoneExerciseController {
 		this.service = service;
 	}
 
-	@GetMapping("/doneExerciseList")
+	@GetMapping("/list")
 	public List<DoneExerciseTo> getDoneExercisesList() {
 
 		List<DoneExerciseTo> result = service.getDoneExercisesList();
 
 		return result;
+	}
+
+	@PostMapping("/add")
+//	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public DoneExerciseTo addDoneExercise(@RequestBody DoneExerciseTo newExercise, HttpServletResponse response) throws IOException {
+
+		DoneExerciseTo doneExercise = service.createDoneExercise(newExercise);
+		if (doneExercise == null) {
+			response.sendError(HttpServletResponse.SC_CONFLICT);
+			return null;
+		}
+		response.sendError(HttpServletResponse.SC_CREATED);
+		return doneExercise;
 	}
 
 	public DoneExerciseService getService() {

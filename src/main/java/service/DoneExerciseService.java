@@ -1,6 +1,6 @@
 package service;
 
-import dao.DoneExerciseDAO;
+import dao.IDoneExerciseDao;
 import model.DoneExercise;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,29 +12,34 @@ import java.util.List;
 @Service
 public class DoneExerciseService {
 
-	@Autowired
-	private DoneExerciseDAO dao;
-	private ModelMapper modelMapper = new ModelMapper();
+	private final ModelMapper modelMapper = new ModelMapper();//todo bean
+	private IDoneExerciseDao dao;
 
 	public DoneExerciseService() {
-		this.dao = dao;
 	}
 
-	public DoneExerciseService(DoneExerciseDAO dao) {
+	@Autowired
+	public DoneExerciseService(IDoneExerciseDao dao) {
 		this.dao = dao;
 	}
 
 	public List<DoneExerciseTo> getDoneExercisesList() {
-		List<DoneExercise> daoList = this.dao.getDoneExercisesList();
+		List<DoneExercise> daoList = this.dao.findAll();
 		List<DoneExerciseTo> result = daoList.stream().map(dao -> modelMapper.map(dao, DoneExerciseTo.class)).toList();
 		return result;
 	}
 
-	public DoneExerciseDAO getDao() {
+	public DoneExerciseTo createDoneExercise(DoneExerciseTo newExercise) {
+		DoneExercise doneExerciseDAO = modelMapper.map(newExercise, DoneExercise.class);
+		DoneExercise createdDoneExercise = dao.save(doneExerciseDAO);
+		return modelMapper.map(createdDoneExercise, DoneExerciseTo.class);
+	}
+
+	public IDoneExerciseDao getDao() {
 		return dao;
 	}
 
-	public void setDao(DoneExerciseDAO dao) {
+	public void setDao(IDoneExerciseDao dao) {
 		this.dao = dao;
 	}
 
