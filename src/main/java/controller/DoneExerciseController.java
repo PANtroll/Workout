@@ -31,8 +31,12 @@ public class DoneExerciseController {
 		return result;
 	}
 
+	@GetMapping("/{doneExerciseId}")
+	public DoneExerciseTo getDoneExercise(@PathVariable Long doneExerciseId) {
+		return service.getDoneExercise(doneExerciseId);
+	}
+
 	@PostMapping("/add")
-//	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public DoneExerciseTo addDoneExercise(@RequestBody DoneExerciseTo newExercise, HttpServletResponse response) throws IOException {
 
 		DoneExerciseTo doneExercise = service.createDoneExercise(newExercise);
@@ -42,6 +46,16 @@ public class DoneExerciseController {
 		}
 		response.sendError(HttpServletResponse.SC_CREATED);
 		return doneExercise;
+	}
+
+	@PutMapping("/edit")
+	public DoneExerciseTo editDoneExercise(@RequestBody DoneExerciseTo doneExerciseTo) {
+		return service.editDoneExercise(doneExerciseTo);
+	}
+
+	@DeleteMapping("/delete/{doneExerciseId}")
+	public boolean deleteDoneExercise(@PathVariable Long doneExerciseId) {
+		return service.deleteDoneExercise(doneExerciseId);
 	}
 
 	public DoneExerciseService getService() {

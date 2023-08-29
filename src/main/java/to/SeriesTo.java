@@ -4,14 +4,16 @@ import java.util.Objects;
 
 public class SeriesTo {
 
-
     private Long id;
     private Integer repeats;
 
+    public SeriesTo() {
+    }
+
     public SeriesTo(Long id, Integer repeats) {
-		this.id = id;
-		this.repeats = repeats;
-	}
+        this.id = id;
+        this.repeats = repeats;
+    }
 
     public Long getId() {
         return id;

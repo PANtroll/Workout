@@ -8,5 +8,5 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface IDoneExerciseDao extends JpaRepository<DoneExercise, Integer> {
+public interface IDoneExerciseDao extends JpaRepository<DoneExercise, Long> {
 }
