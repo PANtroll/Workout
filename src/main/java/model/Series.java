@@ -15,6 +15,8 @@ public class Series {
     @Column
     private Integer repeats;
 
+    @ManyToOne
+    private DoneExercise doneExercise;
 
     public Series(Long id, Integer repeats) {
         this.id = id;

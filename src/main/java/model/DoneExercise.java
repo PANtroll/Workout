@@ -17,7 +17,7 @@ public class DoneExercise extends BaseExercise implements Serializable {
     @Column
     private Integer numberOfSeries;
 
-    @OneToMany
+    @OneToMany(mappedBy = "doneExercise", cascade = CascadeType.ALL)
     @JoinColumn(name = "done_exercise_Id")
     private List<Series> series;
 
