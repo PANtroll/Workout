@@ -18,7 +18,6 @@ public class DoneExercise extends BaseExercise implements Serializable {
     private Integer numberOfSeries;
 
     @OneToMany(mappedBy = "doneExercise", cascade = CascadeType.ALL)
-    @JoinColumn(name = "done_exercise_Id")
     private List<Series> series;
 
     public DoneExercise(Long id, String name, Date date, Integer numberOfSeries, List<Series> series) {

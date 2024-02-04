@@ -8,8 +8,8 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "exercise")
-public class Exercise extends BaseExercise implements Serializable {
+@Table(name = "planed_exercise")
+public class PlanedExercise extends BaseExercise implements Serializable {
 
     @Column
     private Integer series;
@@ -17,13 +17,13 @@ public class Exercise extends BaseExercise implements Serializable {
     @Column
     private Integer repeats;
 
-    public Exercise(Long id, String name, Integer series, Integer repeats) {
+    public PlanedExercise(Long id, String name, Integer series, Integer repeats) {
         super(id, name);
         this.series = series;
         this.repeats = repeats;
     }
 
-    public Exercise() {
+    public PlanedExercise() {
 
     }
 
@@ -46,7 +46,7 @@ public class Exercise extends BaseExercise implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Exercise exercise)) return false;
+        if (!(o instanceof PlanedExercise exercise)) return false;
         if (!super.equals(o)) return false;
         return Objects.equals(series, exercise.series) && Objects.equals(repeats, exercise.repeats);
     }

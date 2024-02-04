@@ -1,7 +1,7 @@
 package service;
 
 import dao.IExerciseDao;
-import model.Exercise;
+import model.PlanedExercise;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,12 +23,12 @@ public class ExerciseService {
 	}
 
 	public List<ExerciseTo> getExercisesList() {
-		List<Exercise> result = dao.findAll();
+		List<PlanedExercise> result = dao.findAll();
 		return result.stream().map(exercise -> modelMapper.map(exercise, ExerciseTo.class)).toList();
 	}
 
 	public ExerciseTo getExercise(Long exerciseId) {
-		Optional<Exercise> exerciseDao = dao.findById(exerciseId);
+		Optional<PlanedExercise> exerciseDao = dao.findById(exerciseId);
 		if (exerciseDao.isEmpty()) {
 			return null;
 		}
@@ -37,14 +37,14 @@ public class ExerciseService {
 	}
 
 	public ExerciseTo createExercise(ExerciseTo exerciseTo) {
-		Exercise exerciseDao = modelMapper.map(exerciseTo, Exercise.class);
-		Exercise createdExercise = dao.save(exerciseDao);
+		PlanedExercise planedExerciseDao = modelMapper.map(exerciseTo, PlanedExercise.class);
+		PlanedExercise createdExercise = dao.save(planedExerciseDao);
 		return modelMapper.map(createdExercise, ExerciseTo.class);
 	}
 
 	public ExerciseTo editExercise(ExerciseTo exerciseTo) {
-		Exercise exerciseDao = modelMapper.map(exerciseTo, Exercise.class);
-		Exercise editedExercise = dao.save(exerciseDao);
+		PlanedExercise planedExerciseDao = modelMapper.map(exerciseTo, PlanedExercise.class);
+		PlanedExercise editedExercise = dao.save(planedExerciseDao);
 		return modelMapper.map(editedExercise, ExerciseTo.class);
 	}
 

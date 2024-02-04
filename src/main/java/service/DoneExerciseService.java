@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import to.DoneExerciseTo;
 
-import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,14 +14,13 @@ import java.util.Optional;
 public class DoneExerciseService {
 
     private final ModelMapper modelMapper = new ModelMapper();//todo bean
-    @PersistenceContext
     private IDoneExerciseDao dao;
 
     public DoneExerciseService() {
     }
 
     @Autowired
-    public DoneExerciseService(IDoneExerciseDao dao) {
+    public DoneExerciseService(IDoneExerciseDao daoz) {
         this.dao = dao;
     }
 

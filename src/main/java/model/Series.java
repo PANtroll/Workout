@@ -16,6 +16,7 @@ public class Series {
     private Integer repeats;
 
     @ManyToOne
+    @JoinColumn(name = "series_id")
     private DoneExercise doneExercise;
 
     public Series(Long id, Integer repeats) {
