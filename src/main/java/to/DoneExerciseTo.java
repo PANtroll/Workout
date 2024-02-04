@@ -1,6 +1,7 @@
 package to;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class DoneExerciseTo extends BaseExerciseTo {
@@ -9,16 +10,16 @@ public class DoneExerciseTo extends BaseExerciseTo {
 
     private Integer numberOfSeries;
 
-    private Long seriesId;
+    private List<SeriesTo> series;
 
     public DoneExerciseTo() {
     }
 
-    public DoneExerciseTo(Long id, String name, Date date, Integer numberOfSeries, Long seriesId) {
+    public DoneExerciseTo(Long id, String name, Date date, Integer numberOfSeries, List<SeriesTo> seriesId) {
         super(id, name);
         this.date = date;
         this.numberOfSeries = numberOfSeries;
-        this.seriesId = seriesId;
+        this.series = seriesId;
     }
 
     public Date getDate() {
@@ -37,12 +38,12 @@ public class DoneExerciseTo extends BaseExerciseTo {
         this.numberOfSeries = numberOfSeries;
     }
 
-    public Long getSeriesId() {
-        return seriesId;
+    public List<SeriesTo> getSeries() {
+        return series;
     }
 
-    public void setSeriesId(Long seriesId) {
-        this.seriesId = seriesId;
+    public void setSeries(List<SeriesTo> series) {
+        this.series = series;
     }
 
 
@@ -54,12 +55,12 @@ public class DoneExerciseTo extends BaseExerciseTo {
             return false;
         if (!super.equals(o))
             return false;
-        return Objects.equals(date, that.date) && Objects.equals(numberOfSeries, that.numberOfSeries) && Objects.equals(seriesId,
-                that.seriesId);
+        return Objects.equals(date, that.date) && Objects.equals(numberOfSeries, that.numberOfSeries) && Objects.equals(series,
+                that.series);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), date, numberOfSeries, seriesId);
+        return Objects.hash(super.hashCode(), date, numberOfSeries, series);
     }
 }

@@ -20,7 +20,7 @@ public class DoneExerciseService {
     }
 
     @Autowired
-    public DoneExerciseService(IDoneExerciseDao daoz) {
+    public DoneExerciseService(IDoneExerciseDao dao) {
         this.dao = dao;
     }
 
@@ -41,7 +41,7 @@ public class DoneExerciseService {
 
     public DoneExerciseTo createDoneExercise(DoneExerciseTo newExercise) {
         DoneExercise doneExerciseDao = modelMapper.map(newExercise, DoneExercise.class);
-        DoneExercise createdDoneExercise = dao.save(doneExerciseDao);
+        DoneExercise createdDoneExercise = dao.save(doneExerciseDao);//todo save series
         return modelMapper.map(createdDoneExercise, DoneExerciseTo.class);
     }
 

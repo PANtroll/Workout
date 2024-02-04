@@ -7,12 +7,14 @@ public class SeriesTo {
     private Long id;
     private Integer repeats;
 
+    private Long doneExerciseId;
     public SeriesTo() {
     }
 
-    public SeriesTo(Long id, Integer repeats) {
+    public SeriesTo(Long id, Integer repeats, Long doneExerciseId) {
         this.id = id;
         this.repeats = repeats;
+        this.doneExerciseId = doneExerciseId;
     }
 
     public Long getId() {
