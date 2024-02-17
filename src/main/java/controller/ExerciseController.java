@@ -1,5 +1,6 @@
 package controller;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import service.ExerciseService;
@@ -24,8 +25,12 @@ public class ExerciseController {
 	}
 
 	@GetMapping("/get/{exerciseId}")
-	public PlanedExerciseTo getExercise(@PathVariable("exerciseId") Long exerciseId) {
-		return service.getExercise(exerciseId);
+	public PlanedExerciseTo getExercise(@PathVariable("exerciseId") Long exerciseId, HttpServletResponse response) {
+		PlanedExerciseTo exercise = service.getExercise(exerciseId);
+		if(exercise == null){
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+		}
+		return exercise;
 	}
 
 	@PostMapping("/add")

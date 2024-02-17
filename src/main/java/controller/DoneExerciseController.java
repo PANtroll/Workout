@@ -32,9 +32,13 @@ public class DoneExerciseController {
 	}
 
 	@GetMapping("/get/{id}")
-	public DoneExerciseTo getDoneExercise(@PathVariable(required = false, name = "id") String id) {
+	public DoneExerciseTo getDoneExercise(@PathVariable(required = false, name = "id") String id, HttpServletResponse response) {
 		Long doneExerciseId = Long.parseLong(id);
-		return service.getDoneExercise(doneExerciseId);
+		DoneExerciseTo doneExercise = service.getDoneExercise(doneExerciseId);
+		if(doneExercise == null){
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+		}
+		return doneExercise;
 	}
 
 	@PostMapping("/add")
@@ -55,7 +59,7 @@ public class DoneExerciseController {
 	}
 
 	@DeleteMapping("/delete/{doneExerciseId}")
-	public boolean deleteDoneExercise(@PathVariable Long doneExerciseId) {
+	public boolean deleteDoneExercise(@PathVariable(required = false, name = "doneExerciseId") Long doneExerciseId) {
 		return service.deleteDoneExercise(doneExerciseId);
 	}
 
