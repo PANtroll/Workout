@@ -5,7 +5,7 @@ import model.PlanedExercise;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import to.ExerciseTo;
+import to.PlanedExerciseTo;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,30 +22,30 @@ public class ExerciseService {
 		this.dao = dao;
 	}
 
-	public List<ExerciseTo> getExercisesList() {
+	public List<PlanedExerciseTo> getExercisesList() {
 		List<PlanedExercise> result = dao.findAll();
-		return result.stream().map(exercise -> modelMapper.map(exercise, ExerciseTo.class)).toList();
+		return result.stream().map(exercise -> modelMapper.map(exercise, PlanedExerciseTo.class)).toList();
 	}
 
-	public ExerciseTo getExercise(Long exerciseId) {
+	public PlanedExerciseTo getExercise(Long exerciseId) {
 		Optional<PlanedExercise> exerciseDao = dao.findById(exerciseId);
 		if (exerciseDao.isEmpty()) {
 			return null;
 		}
-		ExerciseTo exerciseTo = modelMapper.map(exerciseDao.get(), ExerciseTo.class);
-		return exerciseTo;
+		PlanedExerciseTo planedExerciseTo = modelMapper.map(exerciseDao.get(), PlanedExerciseTo.class);
+		return planedExerciseTo;
 	}
 
-	public ExerciseTo createExercise(ExerciseTo exerciseTo) {
-		PlanedExercise planedExerciseDao = modelMapper.map(exerciseTo, PlanedExercise.class);
+	public PlanedExerciseTo createExercise(PlanedExerciseTo planedExerciseTo) {
+		PlanedExercise planedExerciseDao = modelMapper.map(planedExerciseTo, PlanedExercise.class);
 		PlanedExercise createdExercise = dao.save(planedExerciseDao);
-		return modelMapper.map(createdExercise, ExerciseTo.class);
+		return modelMapper.map(createdExercise, PlanedExerciseTo.class);
 	}
 
-	public ExerciseTo editExercise(ExerciseTo exerciseTo) {
-		PlanedExercise planedExerciseDao = modelMapper.map(exerciseTo, PlanedExercise.class);
+	public PlanedExerciseTo editExercise(PlanedExerciseTo planedExerciseTo) {
+		PlanedExercise planedExerciseDao = modelMapper.map(planedExerciseTo, PlanedExercise.class);
 		PlanedExercise editedExercise = dao.save(planedExerciseDao);
-		return modelMapper.map(editedExercise, ExerciseTo.class);
+		return modelMapper.map(editedExercise, PlanedExerciseTo.class);
 	}
 
 	public boolean deleteExercise(Long exerciseId) {

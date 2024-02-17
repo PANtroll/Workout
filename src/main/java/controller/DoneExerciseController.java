@@ -31,8 +31,9 @@ public class DoneExerciseController {
 		return result;
 	}
 
-	@GetMapping("/{doneExerciseId}")
-	public DoneExerciseTo getDoneExercise(@PathVariable Long doneExerciseId) {
+	@GetMapping("/get/{id}")
+	public DoneExerciseTo getDoneExercise(@PathVariable(required = false, name = "id") String id) {
+		Long doneExerciseId = Long.parseLong(id);
 		return service.getDoneExercise(doneExerciseId);
 	}
 

@@ -16,7 +16,7 @@ public class Series {
     private Integer repeats;
 
     @ManyToOne
-    @JoinColumn(name = "series_id")
+    @JoinColumn(name = "done_exercise_id")
     private DoneExercise doneExercise;
 
     public Series(Long id, Integer repeats) {
@@ -42,6 +42,14 @@ public class Series {
 
     public void setRepeats(Integer repeats) {
         this.repeats = repeats;
+    }
+
+    public DoneExercise getDoneExercise() {
+        return doneExercise;
+    }
+
+    public void setDoneExercise(DoneExercise doneExercise) {
+        this.doneExercise = doneExercise;
     }
 
     @Override

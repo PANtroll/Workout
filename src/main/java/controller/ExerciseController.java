@@ -3,7 +3,7 @@ package controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import service.ExerciseService;
-import to.ExerciseTo;
+import to.PlanedExerciseTo;
 
 import java.util.List;
 
@@ -19,27 +19,27 @@ public class ExerciseController {
 	}
 
 	@GetMapping("/list")
-	public List<ExerciseTo> getExercisesList() {
+	public List<PlanedExerciseTo> getExercisesList() {
 		return service.getExercisesList();
 	}
 
-	@GetMapping("/{exerciseId}")
-	public ExerciseTo getExercise(@PathVariable Long exerciseId) {
+	@GetMapping("/get/{exerciseId}")
+	public PlanedExerciseTo getExercise(@PathVariable("exerciseId") Long exerciseId) {
 		return service.getExercise(exerciseId);
 	}
 
 	@PostMapping("/add")
-	public ExerciseTo createExercise(@RequestBody ExerciseTo exerciseTo) {
-		return service.createExercise(exerciseTo);
+	public PlanedExerciseTo createExercise(@RequestBody PlanedExerciseTo planedExerciseTo) {
+		return service.createExercise(planedExerciseTo);
 	}
 
 	@PutMapping("/edit")
-	public ExerciseTo editExercise(@RequestBody ExerciseTo exerciseTo) {
-		return service.editExercise(exerciseTo);
+	public PlanedExerciseTo editExercise(@RequestBody PlanedExerciseTo planedExerciseTo) {
+		return service.editExercise(planedExerciseTo);
 	}
 
 	@DeleteMapping("/delete/{exerciseId}")
-	public boolean deleteExercise(@PathVariable Long exerciseId) {
+	public boolean deleteExercise(@PathVariable("exerciseId") Long exerciseId) {
 		return service.deleteExercise(exerciseId);
 	}
 }

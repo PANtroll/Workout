@@ -23,8 +23,8 @@ public class SeriesController {
 		return service.getSeriesList();
 	}
 
-	@GetMapping("/{seriesId}")
-	public SeriesTo getSeries(@PathVariable Long seriesId) {
+	@GetMapping("/get/{seriesId}")
+	public SeriesTo getSeries(@PathVariable("seriesId") Long seriesId) {
 		return service.getSeries(seriesId);
 	}
 
@@ -39,7 +39,7 @@ public class SeriesController {
 	}
 
 	@DeleteMapping("/delete/{seriesId}")
-	public boolean deleteSeries(@PathVariable Long seriesId) {
+	public boolean deleteSeries(@PathVariable("seriesId") Long seriesId) {
 		return service.deleteSeries(seriesId);
 	}
 }

@@ -4,22 +4,22 @@ import model.BaseExercise;
 
 import java.util.Objects;
 
-public class ExerciseTo extends BaseExercise {
+public class PlanedExerciseTo extends BaseExercise {
 
     private Integer series;
 
     private Integer repeats;
 
-    public ExerciseTo() {
+    public PlanedExerciseTo() {
     }
 
-    public ExerciseTo(Long id, String name, Integer series, Integer repeats) {
+    public PlanedExerciseTo(Long id, String name, Integer series, Integer repeats) {
         super(id, name);
         this.series = series;
         this.repeats = repeats;
     }
 
-    public ExerciseTo(Integer series, Integer repeats) {
+    public PlanedExerciseTo(Integer series, Integer repeats) {
         this.series = series;
         this.repeats = repeats;
     }
@@ -43,7 +43,7 @@ public class ExerciseTo extends BaseExercise {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ExerciseTo that)) return false;
+        if (!(o instanceof PlanedExerciseTo that)) return false;
         if (!super.equals(o)) return false;
         return Objects.equals(getSeries(), that.getSeries()) && Objects.equals(getRepeats(), that.getRepeats());
     }

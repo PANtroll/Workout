@@ -1,7 +1,9 @@
 package service;
 
 import dao.IDoneExerciseDao;
+import dao.ISeriesDao;
 import model.DoneExercise;
+import model.Series;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +17,15 @@ public class DoneExerciseService {
 
     private final ModelMapper modelMapper = new ModelMapper();//todo bean
     private IDoneExerciseDao dao;
+    private ISeriesDao seriesDao;
 
     public DoneExerciseService() {
     }
 
     @Autowired
-    public DoneExerciseService(IDoneExerciseDao dao) {
+    public DoneExerciseService(IDoneExerciseDao dao, ISeriesDao seriesDao) {
         this.dao = dao;
+        this.seriesDao = seriesDao;
     }
 
     public List<DoneExerciseTo> getDoneExercisesList() {
@@ -35,19 +39,31 @@ public class DoneExerciseService {
         if (doneExerciseDao.isEmpty()) {
             return null;
         }
-        DoneExerciseTo doneExerciseTo = modelMapper.map(doneExerciseDao.get(), DoneExerciseTo.class);
+        DoneExercise doneExercise = doneExerciseDao.get();
+        DoneExerciseTo doneExerciseTo = modelMapper.map(doneExercise, DoneExerciseTo.class);
+
         return doneExerciseTo;
     }
 
     public DoneExerciseTo createDoneExercise(DoneExerciseTo newExercise) {
         DoneExercise doneExerciseDao = modelMapper.map(newExercise, DoneExercise.class);
-        DoneExercise createdDoneExercise = dao.save(doneExerciseDao);//todo save series
+        DoneExercise createdDoneExercise = dao.save(doneExerciseDao);
+        newExercise.getSeries().forEach(obj -> {
+            Series series = modelMapper.map(obj, Series.class);
+            series.setDoneExercise(createdDoneExercise);
+            seriesDao.save(series);
+        });
         return modelMapper.map(createdDoneExercise, DoneExerciseTo.class);
     }
 
     public DoneExerciseTo editDoneExercise(DoneExerciseTo doneExerciseTo) {
         DoneExercise doneExerciseDao = modelMapper.map(doneExerciseTo, DoneExercise.class);
         DoneExercise editedDoneExercise = dao.save(doneExerciseDao);
+        doneExerciseTo.getSeries().forEach(obj -> {
+            Series series = modelMapper.map(obj, Series.class);
+            series.setDoneExercise(editedDoneExercise);
+            seriesDao.save(series);
+        });
         return modelMapper.map(editedDoneExercise, DoneExerciseTo.class);
     }
 
