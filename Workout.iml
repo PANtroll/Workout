@@ -110,4 +110,7 @@
     <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.21.9" level="project" />
     <orderEntry type="library" name="Maven: org.modelmapper:modelmapper:2.4.4" level="project" />
   </component>
+  <component name="SonarLintModuleSettings">
+    <option name="uniqueId" value="f64271ff-37a8-43d4-b53a-c1a5b8dca3d7" />
+  </component>
 </module>

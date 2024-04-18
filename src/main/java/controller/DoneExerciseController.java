@@ -13,61 +13,51 @@ import java.util.List;
 @RequestMapping("/doneExercise")
 public class DoneExerciseController {
 
-	@Autowired
-	private DoneExerciseService service;
+    private final DoneExerciseService service;
 
-	public DoneExerciseController() {
-	}
+    @Autowired
+    public DoneExerciseController(DoneExerciseService service) {
+        this.service = service;
+    }
 
-	public DoneExerciseController(DoneExerciseService service) {
-		this.service = service;
-	}
+    @GetMapping("/list")
+    public List<DoneExerciseTo> getDoneExercisesList() {
 
-	@GetMapping("/list")
-	public List<DoneExerciseTo> getDoneExercisesList() {
+        List<DoneExerciseTo> result = service.getDoneExercisesList();
 
-		List<DoneExerciseTo> result = service.getDoneExercisesList();
+        return result;
+    }
 
-		return result;
-	}
+    @GetMapping("/get/{id}")
+    public DoneExerciseTo getDoneExercise(@PathVariable(required = false, name = "id") String id, HttpServletResponse response) {
+        Long doneExerciseId = Long.parseLong(id);
+        DoneExerciseTo doneExercise = service.getDoneExercise(doneExerciseId);
+        if (doneExercise == null) {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
+        return doneExercise;
+    }
 
-	@GetMapping("/get/{id}")
-	public DoneExerciseTo getDoneExercise(@PathVariable(required = false, name = "id") String id, HttpServletResponse response) {
-		Long doneExerciseId = Long.parseLong(id);
-		DoneExerciseTo doneExercise = service.getDoneExercise(doneExerciseId);
-		if(doneExercise == null){
-			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-		}
-		return doneExercise;
-	}
+    @PostMapping("/add")
+    public DoneExerciseTo addDoneExercise(@RequestBody DoneExerciseTo newExercise, HttpServletResponse response) throws IOException {
 
-	@PostMapping("/add")
-	public DoneExerciseTo addDoneExercise(@RequestBody DoneExerciseTo newExercise, HttpServletResponse response) throws IOException {
+        DoneExerciseTo doneExercise = service.createDoneExercise(newExercise);
+        if (doneExercise == null) {
+            response.sendError(HttpServletResponse.SC_CONFLICT);
+            return null;
+        }
+        response.sendError(HttpServletResponse.SC_CREATED);
+        return doneExercise;
+    }
 
-		DoneExerciseTo doneExercise = service.createDoneExercise(newExercise);
-		if (doneExercise == null) {
-			response.sendError(HttpServletResponse.SC_CONFLICT);
-			return null;
-		}
-		response.sendError(HttpServletResponse.SC_CREATED);
-		return doneExercise;
-	}
+    @PutMapping("/edit")
+    public DoneExerciseTo editDoneExercise(@RequestBody DoneExerciseTo doneExerciseTo) {
+        return service.editDoneExercise(doneExerciseTo);
+    }
 
-	@PutMapping("/edit")
-	public DoneExerciseTo editDoneExercise(@RequestBody DoneExerciseTo doneExerciseTo) {
-		return service.editDoneExercise(doneExerciseTo);
-	}
+    @DeleteMapping("/delete/{doneExerciseId}")
+    public boolean deleteDoneExercise(@PathVariable(required = false, name = "doneExerciseId") Long doneExerciseId) {
+        return service.deleteDoneExercise(doneExerciseId);
+    }
 
-	@DeleteMapping("/delete/{doneExerciseId}")
-	public boolean deleteDoneExercise(@PathVariable(required = false, name = "doneExerciseId") Long doneExerciseId) {
-		return service.deleteDoneExercise(doneExerciseId);
-	}
-
-	public DoneExerciseService getService() {
-		return service;
-	}
-
-	public void setService(DoneExerciseService service) {
-		this.service = service;
-	}
 }
