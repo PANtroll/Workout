@@ -5,12 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @SpringBootApplication
-@ComponentScan(basePackages = { "service", "controller", "to" })
+@ComponentScan(basePackages = {"service", "controller", "to"})
 @EnableJpaRepositories(basePackages = "dao")
-@EntityScan(basePackages = { "model" })
+@EntityScan(basePackages = {"model"})
 public class WorkoutApplication {
 
     public static void main(String[] args) {
@@ -31,10 +30,5 @@ public class WorkoutApplication {
 //
 //        };
 //    }
-
-    @GetMapping("/")
-    public String index() {
-        return "Welcome";
-    }
 
 }

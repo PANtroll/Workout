@@ -1,0 +1,29 @@
+# Etap 1: Budowanie aplikacji Angular (build stage)
+FROM node:18 AS build
+
+# Ustawienie katalogu roboczego w kontenerze
+WORKDIR /app
+
+# Kopiowanie package.json i package-lock.json do kontenera
+COPY package*.json ./
+
+# Instalacja zależności aplikacji
+RUN npm install
+
+# Kopiowanie reszty aplikacji do kontenera
+COPY . .
+
+# Budowanie aplikacji Angular
+RUN npm run build --prod
+
+# Etap 2: Serwowanie aplikacji (production stage)
+FROM nginx:alpine
+
+# Kopiowanie wyników builda do katalogu, z którego Nginx będzie serwował pliki
+COPY --from=build /app/dist/ /usr/share/nginx/html
+
+# Eksponowanie portu 80
+EXPOSE 80
+
+# Uruchomienie Nginx
+CMD ["nginx", "-g", "daemon off;"]

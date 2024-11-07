@@ -6,11 +6,11 @@ services:
     container_name: Workout
     restart: always
     build:
-      context: ./
+      context: ..
     command:
       --default-authentication-plugin=mysql_native_password
     env_file:
-      - .env
+      - ../.env
       #        - MYSQL_DATABASE="Workout"
     #        - MYSQL_DATABASE=${MYSQL_DATABASE}
     #        - MYSQL_USER=${MYSQL_USER}
