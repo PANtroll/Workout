@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise</title>
+</head>
+<body>
+<form action="http://localhost:8080/addNewExercise">
+    <!--<form action="http://localhost:8080/doneExercise/add">-->
+    <label>nazwa:</label>
+    <label>
+        <input name="exerciseName"/>
+    </label>
+    <label>data:</label>
+    <label>
+        <input name="exerciseDate" type="date"/>
+    </label>
+    <label>serie:</label>
+    <label>
+        <input name="exerciseSeries" type="number"/>
+    </label>
+    <label>powtórzenia:</label>
+    <label name="exerciseSeries">
+        <input name="exerciseRepeats" type="number"/>
+    </label>
+    <button type="submit">zapisz</button>
+</form>
+</body>
+</html>
